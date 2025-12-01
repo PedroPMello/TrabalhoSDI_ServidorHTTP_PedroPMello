@@ -12,6 +12,7 @@ A estrutura de arquivos segue a organização padrão de projetos Java e inclui 
 ├── lib/
 │   └── gson-2.10.1.jar (ou versão equivalente)
 ├── server/
+│   ├── Server.java
 │   ├── ServerV2.java
 │   ├── Arquivo.java
 │   ├── Usuario.java
