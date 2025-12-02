@@ -6,8 +6,20 @@ Este projeto foi desenvolvido como Trabalho Final para a disciplina de Sistemas 
 
 A estrutura de arquivos segue a organização padrão de projetos Java e inclui os arquivos essenciais para o servidor e o cliente.
 
-. ├── client/ │ └── Client.java ├── lib/ │ └── gson-2.10.1.jar (ou versão equivalente) ├── server/ │ ├── ServerV2.java │ ├── Arquivo.java │ ├── Usuario.java │ └── HttpParser.java └── tests/ └── requests.http (Para teste via clientes HTTP como VS Code REST Client)
-
+```
+├── client/
+│   └── Client.java
+├── lib/
+│   └── gson-2.10.1.jar (ou versão equivalente)
+├── server/
+│   ├── Server.java
+│   ├── ServerV2.java
+│   ├── Arquivo.java
+│   ├── Usuario.java
+│   └── HttpParser.java
+└── tests/
+    └── requests.http (Para teste via clientes HTTP como VS Code REST Client)
+```
 
 ## Tecnologias e Dependências
 
@@ -54,7 +66,8 @@ Esta é a primeira rota a ser chamada para obter o token de acesso.
 {
   "status": "Login bem-sucedido",
   "token": "4497192b-f08d-480a-9240-5e0f4f7a46a0" // Token dinâmico (UUID)
-}```
+}
+```
 
 * **Importante:** O token gerado deve ser enviado no cabeçalho Authorization para as rotas protegidas.
 
@@ -69,7 +82,7 @@ Esta é a primeira rota a ser chamada para obter o token de acesso.
 
 ---
 
-## 🛡️ Protocolo de Autorização
+## Protocolo de Autorização
 
 Todas as rotas protegidas (`POST`, `PUT`, `DELETE`) verificam o cabeçalho `Authorization`:
 
@@ -91,7 +104,8 @@ Content-Type: application/json
   "nome": "relatorio.json",
   "conteudo": "{\"data\": \"2025-01-01\"}",
   "tipo": "application/json"
-}```
+}
+```
 
 ### 2. Gerenciamento de Arquivos (CRUD)
 
@@ -111,13 +125,14 @@ Todas as rotas protegidas (`POST`, `PUT`, `DELETE`) verificam o cabeçalho `Auth
 * **Se Válido:** A requisição é processada.
 * **Se Ausente ou Inválido:** Retorna **`401 Unauthorized`**.
 
-## 📝 Exemplos de Teste (Usando o Token)
+## Exemplos de Teste (Usando o Token)
 
 Para testar as rotas protegidas, substitua `[SEU_TOKEN]` pelo valor obtido no login. O arquivo `tests/requests.http` contém exemplos de requisições.
 
 ### Exemplo 1: POST (Criação)
 
-```POST http://localhost:8080/arquivos
+```
+POST http://localhost:8080/arquivos
 Authorization: [SEU_TOKEN]
 Content-Type: application/json
 
@@ -125,7 +140,8 @@ Content-Type: application/json
   "nome": "relatorio.json",
   "conteudo": "{\"data\": \"2025-01-01\"}",
   "tipo": "application/json"
-}```
+}
+```
 
 ### Exemplo 2: GET (Leitura)
 
@@ -134,16 +150,20 @@ Content-Type: application/json
 ### Exemplo 3: DELETE (Exclusão)
 
 
-```DELETE http://localhost:8080/arquivos/relatorio.json
-Authorization: [SEU_TOKEN] ```
+```
+DELETE http://localhost:8080/arquivos/relatorio.json
+Authorization: [SEU_TOKEN]
+```
 
 ### Exemplo 4: PUT (Atualização)
 
-```PUT http://localhost:8080/arquivos/relatorio.json
+```
+PUT http://localhost:8080/arquivos/relatorio.json
 Authorization: [SEU_TOKEN]
 Content-Type: application/json
 
 {
   "conteudo": "Novo texto simples de atualização",
   "tipo": "text/plain"
-}```
+}
+```
